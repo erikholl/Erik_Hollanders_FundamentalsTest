@@ -18,16 +18,15 @@ public class Flower extends Plant {
         return smell;
     }
 
-    public void setSmell (Scent smell) {
+    public void setSmell(Scent smell) {
         this.smell = smell;
     }
 
     @Override
     public String toString() {
         return "Flower: " +
-                "name='" + getName() + '\'' +
-                ", height='" + getHeight() + '\'' +
-                ", smell=" + smell +
-                ".";
+                "name=" + getName() +
+                ", height=" + getHeight() +
+                ", smell=" + smell + " ";
     }
 }

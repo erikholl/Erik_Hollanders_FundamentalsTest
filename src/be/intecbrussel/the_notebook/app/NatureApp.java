@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class NatureApp {
+
     public static void main(String[] args) {
         // create instance of Notebook
         ForestNotebook blackForestWk1 = new ForestNotebook();
@@ -37,15 +38,14 @@ public class NatureApp {
         Tree walnutTree = new Tree("Walnut tree", 11.1);
         blackForestWk1.addPlant(walnutTree);
 
-        // create a plantDiet for Herbivores (and Omnivores)
+        // create a standard plantDiet for Herbivores (and Omnivores).
         Set<Plant> plantDiet1 = new HashSet<>();
         plantDiet1.add(licorice);
-        plantDiet1.add(conifer);
         plantDiet1.add(butterflyBush);
 
         // create instances of animals, their specifics and add to notebook
         Herbivore mole = new Herbivore("Mole");
-        mole.setPlantDiet(plantDiet1); // TODO: add diet in 1 go (loop)?
+        mole.setPlantDiet(plantDiet1);
         blackForestWk1.addAnimal(mole);
 
         Herbivore rabbit = new Herbivore("Rabbit", 1.2, 0.3, 0.2);
@@ -93,8 +93,10 @@ public class NatureApp {
         blackForestWk1.addPlant(willow2);
 
         // get / print # of animals & # of plants recorded in the notebook
-        System.out.println("# of plants added: " + blackForestWk1.getPlantCount());
-        System.out.println("# of animals added: " + blackForestWk1.getAnimalCount());
+        System.out.println(
+                "# of plants added: " + blackForestWk1.getPlantCount());
+        System.out.println(
+                "# of animals added: " + blackForestWk1.getAnimalCount());
         System.out.println("------------------------------------------------");
 
         // print the notebook (not sorted)
@@ -102,16 +104,35 @@ public class NatureApp {
         System.out.println("------------------------------------------------");
 
         // print Herbivores, Omnivores and Carnivores lists
-        System.out.println(blackForestWk1.getHerbivores());
-        System.out.println(blackForestWk1.getOmnivores());
-        System.out.println(blackForestWk1.getCarnivores());
+        if (blackForestWk1.getHerbivores() == null) {
+            System.out.println("no herbies in your notebook");
+        } else
+            System.out.println("herbies: " + blackForestWk1.getHerbivores());
+
+        if (blackForestWk1.getOmnivores() == null) {
+            System.out.println("no omnies in your notebook");
+        } else
+            System.out.println("omnies: " + blackForestWk1.getOmnivores());
+
+        if (blackForestWk1.getCarnivores() == null) {
+            System.out.println("no carnies in your notebook");
+        } else
+            System.out.println("carnies: " + blackForestWk1.getCarnivores());
         System.out.println("------------------------------------------------");
 
-        // sort animals and plants
+        // sort animals and plants alphabetically on name
         blackForestWk1.sortAnimalsByName();
         blackForestWk1.sortPlantsByName();
 
         // print the notebook, animals / plants sorted alphabetically on name
+        blackForestWk1.printNotebook();
+        System.out.println("------------------------------------------------");
+
+        // bonus: sort the animals and plants on height
+        blackForestWk1.sortPlantsByHeight();
+        blackForestWk1.sortAnimalsByHeight();
+
+        // bonus: print the notebook, animals / plants sorted on height
         blackForestWk1.printNotebook();
     }
 }

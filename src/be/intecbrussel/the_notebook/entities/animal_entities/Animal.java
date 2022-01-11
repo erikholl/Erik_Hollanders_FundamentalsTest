@@ -9,14 +9,14 @@ public class Animal {
     // following UML (protected) but I think private is better - protected
     // does not look to be needed?
 
-    public Animal (String name) {
+    public Animal(String name) {
         this.name = name;
         setWeight(0);                   // default value
         setHeight(0);                   //      ,,
         setLength(0);                   //      ,,
     }
 
-    public Animal (String name, double weight, double height, double length) {
+    public Animal(String name, double weight, double height, double length) {
         this.name = name;
         this.weight = weight;
         this.height = height;

@@ -1,6 +1,7 @@
 package be.intecbrussel.the_notebook.entities.animal_entities;
 
 import be.intecbrussel.the_notebook.entities.plant_entities.Plant;
+
 import java.util.Set;
 
 // COMPLETED
@@ -36,11 +37,10 @@ public class Herbivore extends Animal {
     @Override
     public String toString() {
         return "Herbivore: " +
-                "name='" + getName() + '\'' +
-                ", height='" + getWeight() + '\'' +
-                ", height='" + getHeight() + '\'' +
-                ", length='" + getLength() + '\'' +
-                ", plantDiet=" + plantDiet +
-                ".";
+                "name=" + getName() +
+                ", weight=" + getWeight() +
+                ", height=" + getHeight() +
+                ", length=" + getLength() +
+                ", plantDiet=" + plantDiet + " ";
     }
 }

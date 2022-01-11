@@ -3,11 +3,10 @@ package be.intecbrussel.the_notebook.service;
 import be.intecbrussel.the_notebook.entities.animal_entities.*;
 import be.intecbrussel.the_notebook.entities.plant_entities.*;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
+// TODO: empty plantDiet
 public class ForestNotebook {
     private List<Carnivore> carnivores = new ArrayList<>();
     private List<Omnivore> omnivores = new ArrayList<>();
@@ -19,11 +18,11 @@ public class ForestNotebook {
     private List<Animal> animals = new ArrayList<>();
     private List<Plant> plants = new ArrayList<>();
 
+    // constructor
     public ForestNotebook() {
     }
-    // following UML - however, as this is default constructor, it can also
-    // be left out of the code
 
+    // getter / setter methods
     public List<Carnivore> getCarnivores() {
         return carnivores;
     }
@@ -56,7 +55,14 @@ public class ForestNotebook {
         return animalCount;
     }
 
+    // other instance methods
     public void addAnimal(Animal animal) {
+//
+//        if (checkIfPlantDietIsEmpty(animal)) {
+//            if (animal instanceof Herbivore) {
+//                ((Herbivore) animal).setPlantDiet();
+//            }
+//        }
         if (!animalExistsAlreadyInNotebook(animal)) {   // see help method
             addToAnimalTypeList(animal);                // see help method
             animals.add(animal);
@@ -67,14 +73,15 @@ public class ForestNotebook {
         }
     }
 
-    public void addPlant(Plant plant) {
-        if (!plantExistsAlreadyInNotebook(plant)) {     // see help method
-            plants.add(plant);
-            plantCount++;
-        } else {
-            System.out.println("plant " + plant.getName() + " already exists " +
-                                       "in your notebook");
+    private boolean checkIfPlantDietIsEmpty(Animal animal) {
+        boolean emptyPlantDiet = false;
+        if (animal instanceof Herbivore) {
+            emptyPlantDiet = ((Herbivore) animal).getPlantDiet() == null;
         }
+        if (animal instanceof Omnivore) {
+            emptyPlantDiet = ((Omnivore) animal).getPlantDiet() == null;
+        }
+        return emptyPlantDiet;
     }
 
     // help method - returns 'true' if animal name already exists
@@ -96,6 +103,31 @@ public class ForestNotebook {
         }
     }
 
+    public void addPlant(Plant plant) {
+        convertNullValuesPlantToUnknown(plant);              // see help method
+        if (!plantExistsAlreadyInNotebook(plant)) {     // see help method
+            plants.add(plant);
+            plantCount++;
+        } else {
+            System.out.println("plant " + plant.getName() + " already exists " +
+                                       "in your notebook");
+        }
+    }
+
+    private void convertNullValuesPlantToUnknown(Plant plant) {
+        if (plant instanceof Tree && ((Tree) plant).getLeafType() == null) {
+            ((Tree) plant).setLeafType(LeafType.UNKNOWN);
+        }
+
+        if (plant instanceof Bush && ((Bush) plant).getLeafType() == null) {
+            ((Bush) plant).setLeafType(LeafType.UNKNOWN);
+        }
+
+        if (plant instanceof Flower && ((Flower) plant).getSmell() == null) {
+            ((Flower) plant).setSmell(Scent.UNKNOWN);
+        }
+    }
+
     // help method - returns 'true' if plant name already exists
     private boolean plantExistsAlreadyInNotebook(Plant plant) {
         List<String> plantNameList = plants.stream()
@@ -105,13 +137,22 @@ public class ForestNotebook {
     }
 
     public void printNotebook() {
-        System.out.println("Your forest notebook contains these animals...:");
-        for (Animal animal : animals) {
-            System.out.println(animal);
+        if (animals.size() == 0) {
+            System.out.println("Your forest notebook contains no animals.");
+        } else {
+            System.out.println("Your forest notebook contains these animals:");
+            for (Animal animal : animals) {
+                System.out.println(animal);
+            }
         }
-        System.out.println("\n...and these plants:");
-        for (Plant plant : plants) {
-            System.out.println(plant);
+
+        if (plants.size() == 0) {
+            System.out.println("Your forest notebook contains no plants.");
+        } else {
+            System.out.println("\nYour forest notebook contains these plants:");
+            for (Plant plant : plants) {
+                System.out.println(plant);
+            }
         }
     }
 
@@ -124,10 +165,10 @@ public class ForestNotebook {
     }
 
     public void sortAnimalsByHeight() {
-
+        animals.sort(Comparator.comparing(Animal::getHeight));
     }
 
     public void sortPlantsByHeight() {
-
+        plants.sort(Comparator.comparing(Plant::getHeight));
     }
 }
