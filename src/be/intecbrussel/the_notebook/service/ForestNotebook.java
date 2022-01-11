@@ -1,4 +1,5 @@
 package be.intecbrussel.the_notebook.service;
+
 import be.intecbrussel.the_notebook.entities.animal_entities.*;
 import be.intecbrussel.the_notebook.entities.plant_entities.*;
 
@@ -8,19 +9,20 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class ForestNotebook {
-
     private List<Carnivore> carnivores = new ArrayList<>();
     private List<Omnivore> omnivores = new ArrayList<>();
     private List<Herbivore> herbivores = new ArrayList<>();
 
-    private int plantCount;
-    private int animalCount;
+    private int plantCount = 0;     // initialize at 0 when notebook is created
+    private int animalCount = 0;    //              ,,      ,,
 
     private List<Animal> animals = new ArrayList<>();
     private List<Plant> plants = new ArrayList<>();
 
     public ForestNotebook() {
     }
+    // following UML - however, as this is default constructor, it can also
+    // be left out of the code
 
     public List<Carnivore> getCarnivores() {
         return carnivores;
@@ -57,8 +59,8 @@ public class ForestNotebook {
     public void addAnimal(Animal animal) {
         if (!animalExistsAlreadyInNotebook(animal)) {   // see help method
             addToAnimalTypeList(animal);                // see help method
-            animals.add(animal);            // add to main animal list
-            animalCount++;                  // increasing the count (obviously)
+            animals.add(animal);
+            animalCount++;
         } else {
             System.out.println("animal " + animal.getName() + " already " +
                                        "exists in your notebook");
@@ -66,7 +68,7 @@ public class ForestNotebook {
     }
 
     public void addPlant(Plant plant) {
-        if (!plantExistsAlreadyInNotebook(plant)) {
+        if (!plantExistsAlreadyInNotebook(plant)) {     // see help method
             plants.add(plant);
             plantCount++;
         } else {
@@ -75,7 +77,7 @@ public class ForestNotebook {
         }
     }
 
-    // help method - returns boolean true if animal name already exists
+    // help method - returns 'true' if animal name already exists
     private boolean animalExistsAlreadyInNotebook(Animal animal) {
         List<String> animalNameList = animals.stream()
                 .map(Animal::getName) // in lambda: o -> o.getName()
@@ -83,8 +85,7 @@ public class ForestNotebook {
         return animalNameList.contains(animal.getName());
     }
 
-    // help method - to keep things as modular as possible - method to add
-    // animal to either Herbivore, Omnivore or Carnivore
+    // help method - checks AnimalType and adds to correct AnimalType list
     private void addToAnimalTypeList(Animal animal) {
         if (animal instanceof Herbivore) {
             herbivores.add((Herbivore) animal);
@@ -95,7 +96,7 @@ public class ForestNotebook {
         }
     }
 
-    // help method - returns boolean true if plant name already exists
+    // help method - returns 'true' if plant name already exists
     private boolean plantExistsAlreadyInNotebook(Plant plant) {
         List<String> plantNameList = plants.stream()
                 .map(Plant::getName)
@@ -115,11 +116,18 @@ public class ForestNotebook {
     }
 
     public void sortAnimalsByName() {
-        animals.sort(Comparator.comparing(a -> a.getName())); // Animal::getName
+        animals.sort(Comparator.comparing(Animal::getName)); // a -> a.getName()
     }
 
     public void sortPlantsByName() {
-        plants.sort(Comparator.comparing(p -> p.getName())); // Plants::getName
+        plants.sort(Comparator.comparing(Plant::getName)); // p -> p.getName()
+    }
+
+    public void sortAnimalsByHeight() {
+
+    }
+
+    public void sortPlantsByHeight() {
 
     }
 }

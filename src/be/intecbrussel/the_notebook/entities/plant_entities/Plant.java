@@ -1,12 +1,13 @@
 package be.intecbrussel.the_notebook.entities.plant_entities;
 
+// COMPLETED
 public class Plant {
-    private String name;
-    private double height;
+    protected String name;
+    protected double height;
 
     public Plant(String name) {
         this.name = name;
-        setHeight(0);           // default
+        setHeight(0);                               // default value
     }
 
     public Plant(String name, double height) {

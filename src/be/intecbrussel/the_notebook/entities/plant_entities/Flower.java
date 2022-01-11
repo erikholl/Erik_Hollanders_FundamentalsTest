@@ -1,7 +1,10 @@
 package be.intecbrussel.the_notebook.entities.plant_entities;
 
+// COMPLETED
 public class Flower extends Plant {
     private Scent smell;
+    // no default, following UML. if no smell will be recorded in the
+    // notebook, smell and methods using smell will return null...
 
     public Flower(String name) {
         super(name);
@@ -21,10 +24,10 @@ public class Flower extends Plant {
 
     @Override
     public String toString() {
-        return "Flower{" +
+        return "Flower: " +
                 "name='" + getName() + '\'' +
                 ", height='" + getHeight() + '\'' +
                 ", smell=" + smell +
-                '}';
+                ".";
     }
 }

@@ -1,16 +1,19 @@
 package be.intecbrussel.the_notebook.entities.animal_entities;
 
+// COMPLETED
 public class Animal {
-    private String name;
-    private double weight;
-    private double height;
-    private double length;
+    protected String name;
+    protected double weight;
+    protected double height;
+    protected double length;
+    // following UML (protected) but I think private is better - protected
+    // does not look to be needed?
 
     public Animal (String name) {
         this.name = name;
-        setWeight(1);
-        setHeight(1);
-        setLength(1);
+        setWeight(0);                   // default value
+        setHeight(0);                   //      ,,
+        setLength(0);                   //      ,,
     }
 
     public Animal (String name, double weight, double height, double length) {

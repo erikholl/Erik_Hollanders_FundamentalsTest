@@ -12,36 +12,38 @@ public class NatureApp {
         // create instance of Notebook
         ForestNotebook blackForestWk1 = new ForestNotebook();
 
-        // create instances of plants, add to notebook (6 created instead of 5)
+        // create instances of plants, their specifics and add to notebook
         Tree willow = new Tree("Willow");
         willow.setLeafType(LeafType.SPEAR);
         blackForestWk1.addPlant(willow);
+
         Flower sunFlower = new Flower("Sunflower", 1.5);
         sunFlower.setSmell(Scent.MUSKY);
         blackForestWk1.addPlant(sunFlower);
+
         Weed licorice = new Weed("Licorice", 0.2);
         licorice.setArea(1.6);
         blackForestWk1.addPlant(licorice);
+
         Bush conifer = new Bush("Conifer", 1.8);
         conifer.setFruit("Red berries");
         conifer.setLeafType(LeafType.HEART);
         blackForestWk1.addPlant(conifer);
+
         Bush butterflyBush = new Bush("Butterfly Bush", 0.9);
         butterflyBush.setLeafType(LeafType.SPEAR);
         blackForestWk1.addPlant(butterflyBush);
+
         Tree walnutTree = new Tree("Walnut tree", 11.1);
         blackForestWk1.addPlant(walnutTree);
 
         // create a plantDiet for Herbivores (and Omnivores)
-        // PS. it is not very logical to create 1 diet for more animals: in
-        // reality you encounter an animal and create its diet as you're
-        // watching it.
         Set<Plant> plantDiet1 = new HashSet<>();
         plantDiet1.add(licorice);
         plantDiet1.add(conifer);
         plantDiet1.add(butterflyBush);
 
-        // create instances of animals
+        // create instances of animals, their specifics and add to notebook
         Herbivore mole = new Herbivore("Mole");
         mole.setPlantDiet(plantDiet1); // TODO: add diet in 1 go (loop)?
         blackForestWk1.addAnimal(mole);
@@ -95,15 +97,21 @@ public class NatureApp {
         System.out.println("# of animals added: " + blackForestWk1.getAnimalCount());
         System.out.println("------------------------------------------------");
 
-        // print out the notebook (unsorted, no sorting yet applied)
+        // print the notebook (not sorted)
         blackForestWk1.printNotebook();
+        System.out.println("------------------------------------------------");
+
+        // print Herbivores, Omnivores and Carnivores lists
+        System.out.println(blackForestWk1.getHerbivores());
+        System.out.println(blackForestWk1.getOmnivores());
+        System.out.println(blackForestWk1.getCarnivores());
         System.out.println("------------------------------------------------");
 
         // sort animals and plants
         blackForestWk1.sortAnimalsByName();
         blackForestWk1.sortPlantsByName();
 
-        // print out the notebook again, now with sorted lists
+        // print the notebook, animals / plants sorted alphabetically on name
         blackForestWk1.printNotebook();
     }
 }
