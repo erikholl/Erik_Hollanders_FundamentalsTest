@@ -1,11 +1,9 @@
 package be.intecbrussel.the_notebook.entities.plant_entities;
 
-// COMPLETED
 public class Tree extends Plant {
-    private LeafType leafType;
-    // no default, following UML. if no leafType will be recorded in the
-    // notebook, leafType and methods using leafType will return null...
+    private LeafType leafType = LeafType.UNKNOWN;   // default: see explanation
 
+    // in Scent/LeafType enums
     public Tree(String name) {
         super(name);
     }
@@ -24,9 +22,8 @@ public class Tree extends Plant {
 
     @Override
     public String toString() {
-        return "Tree: " +
-                "name=" + getName() +
-                ", height=" + getHeight() +
-                ", leafType=" + leafType + " ";
+        return "Tree{name='" + getName() + '\'' +
+                ", height='" + getHeight() + '\'' +
+                ", leafType='" + getLeafType() + "'}";
     }
 }

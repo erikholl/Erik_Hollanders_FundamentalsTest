@@ -2,9 +2,9 @@ package be.intecbrussel.the_notebook.entities.animal_entities;
 
 import be.intecbrussel.the_notebook.entities.plant_entities.Plant;
 
+import java.util.HashSet;
 import java.util.Set;
 
-// COMPLETED
 public class Omnivore extends Animal {
     private Set<Plant> plantDiet;       // no default: if no diet noted -> empty
     private double maxFoodSize = 0;     // default value
@@ -18,7 +18,17 @@ public class Omnivore extends Animal {
     }
 
     public Set<Plant> getPlantDiet() {
-        return plantDiet;
+        if (plantDietNullCheck(plantDiet)) {            // see help method
+            Set<Plant> plantDietUnknown = new HashSet<>();
+            plantDietUnknown.add(new Plant("UNKNOWN"));
+            return plantDietUnknown;
+        } else
+            return plantDiet;
+    }
+
+    // help method if plantDiet is null (not entered)
+    private boolean plantDietNullCheck(Set<Plant> plantDiet) {
+        return plantDiet == null;
     }
 
     public void setPlantDiet(Set<Plant> plantDiet) {
@@ -39,12 +49,11 @@ public class Omnivore extends Animal {
 
     @Override
     public String toString() {
-        return "Omnivore: " +
-                "name=" + getName() +
-                ", weight=" + getWeight() +
-                ", height=" + getHeight() +
-                ", length=" + getLength() +
-                ", plantDiet=" + plantDiet +
-                ", maxFoodSize=" + maxFoodSize + " ";
+        return "Omnivore{name='" + getName() + '\'' +
+                ", weight='" + getWeight() + '\'' +
+                ", height='" + getHeight() + '\'' +
+                ", length='" + getLength() + '\'' +
+                ", plantDiet=" + getPlantDiet() +
+                ", maxFoodSize='" + getMaxFoodSize() + "'}";
     }
 }

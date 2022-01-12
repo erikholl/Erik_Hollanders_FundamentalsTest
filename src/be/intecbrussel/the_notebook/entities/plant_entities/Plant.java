@@ -1,13 +1,12 @@
 package be.intecbrussel.the_notebook.entities.plant_entities;
 
-// COMPLETED
 public class Plant {
     protected String name;
     protected double height;
 
     public Plant(String name) {
         this.name = name;
-        setHeight(0);                               // default value
+        setHeight(0);           // default value
     }
 
     public Plant(String name, double height) {
@@ -25,5 +24,11 @@ public class Plant {
 
     public void setHeight(double height) {
         this.height = height;
+    }
+
+    @Override
+    public String toString() {
+        return "Plant{" +
+                "name='" + getName() + "'}";
     }
 }

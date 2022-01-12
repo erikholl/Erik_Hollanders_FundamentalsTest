@@ -6,7 +6,6 @@ import be.intecbrussel.the_notebook.entities.plant_entities.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
-// TODO: empty plantDiet
 public class ForestNotebook {
     private List<Carnivore> carnivores = new ArrayList<>();
     private List<Omnivore> omnivores = new ArrayList<>();
@@ -57,12 +56,6 @@ public class ForestNotebook {
 
     // other instance methods
     public void addAnimal(Animal animal) {
-//
-//        if (checkIfPlantDietIsEmpty(animal)) {
-//            if (animal instanceof Herbivore) {
-//                ((Herbivore) animal).setPlantDiet();
-//            }
-//        }
         if (!animalExistsAlreadyInNotebook(animal)) {   // see help method
             addToAnimalTypeList(animal);                // see help method
             animals.add(animal);
@@ -73,21 +66,10 @@ public class ForestNotebook {
         }
     }
 
-    private boolean checkIfPlantDietIsEmpty(Animal animal) {
-        boolean emptyPlantDiet = false;
-        if (animal instanceof Herbivore) {
-            emptyPlantDiet = ((Herbivore) animal).getPlantDiet() == null;
-        }
-        if (animal instanceof Omnivore) {
-            emptyPlantDiet = ((Omnivore) animal).getPlantDiet() == null;
-        }
-        return emptyPlantDiet;
-    }
-
     // help method - returns 'true' if animal name already exists
     private boolean animalExistsAlreadyInNotebook(Animal animal) {
         List<String> animalNameList = animals.stream()
-                .map(Animal::getName) // in lambda: o -> o.getName()
+                .map(Animal::getName)
                 .collect(Collectors.toList());
         return animalNameList.contains(animal.getName());
     }
@@ -104,27 +86,12 @@ public class ForestNotebook {
     }
 
     public void addPlant(Plant plant) {
-        convertNullValuesPlantToUnknown(plant);              // see help method
         if (!plantExistsAlreadyInNotebook(plant)) {     // see help method
             plants.add(plant);
             plantCount++;
         } else {
             System.out.println("plant " + plant.getName() + " already exists " +
                                        "in your notebook");
-        }
-    }
-
-    private void convertNullValuesPlantToUnknown(Plant plant) {
-        if (plant instanceof Tree && ((Tree) plant).getLeafType() == null) {
-            ((Tree) plant).setLeafType(LeafType.UNKNOWN);
-        }
-
-        if (plant instanceof Bush && ((Bush) plant).getLeafType() == null) {
-            ((Bush) plant).setLeafType(LeafType.UNKNOWN);
-        }
-
-        if (plant instanceof Flower && ((Flower) plant).getSmell() == null) {
-            ((Flower) plant).setSmell(Scent.UNKNOWN);
         }
     }
 
@@ -157,11 +124,11 @@ public class ForestNotebook {
     }
 
     public void sortAnimalsByName() {
-        animals.sort(Comparator.comparing(Animal::getName)); // a -> a.getName()
+        animals.sort(Comparator.comparing(Animal::getName));
     }
 
     public void sortPlantsByName() {
-        plants.sort(Comparator.comparing(Plant::getName)); // p -> p.getName()
+        plants.sort(Comparator.comparing(Plant::getName));
     }
 
     public void sortAnimalsByHeight() {

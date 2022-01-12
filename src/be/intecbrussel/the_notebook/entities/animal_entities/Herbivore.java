@@ -2,13 +2,13 @@ package be.intecbrussel.the_notebook.entities.animal_entities;
 
 import be.intecbrussel.the_notebook.entities.plant_entities.Plant;
 
+import java.util.HashSet;
 import java.util.Set;
 
-// COMPLETED
 public class Herbivore extends Animal {
     private Set<Plant> plantDiet;
-    // UML has unclear symbol for access level - I picked private (consistent
-    // with Omnivore and other access level is not needed
+    // UML has unclear symbol for access level - private is consistent with
+    // Omnivore / Carnivore
 
     public Herbivore(String name) {
         super(name);
@@ -19,7 +19,18 @@ public class Herbivore extends Animal {
     }
 
     public Set<Plant> getPlantDiet() {
-        return plantDiet;
+        if (plantDietNullCheck(plantDiet)) {            // see help method
+            Set<Plant> plantDietUnknown = new HashSet<>();
+            plantDietUnknown.add(new Plant("UNKNOWN"));
+            return plantDietUnknown;
+        } else {
+            return plantDiet;
+        }
+    }
+
+    // help method if plantDiet is null (not entered)
+    private boolean plantDietNullCheck(Set<Plant> plantDiet) {
+        return plantDiet == null;
     }
 
     public void setPlantDiet(Set<Plant> plantDiet) {
@@ -36,11 +47,10 @@ public class Herbivore extends Animal {
 
     @Override
     public String toString() {
-        return "Herbivore: " +
-                "name=" + getName() +
-                ", weight=" + getWeight() +
-                ", height=" + getHeight() +
-                ", length=" + getLength() +
-                ", plantDiet=" + plantDiet + " ";
+        return "Herbivore{name='" + getName() + '\'' +
+                ", weight='" + getWeight() + '\'' +
+                ", height='" + getHeight() + '\'' +
+                ", length='" + getLength() + '\'' +
+                ", plantDiet=" + getPlantDiet() + "}";
     }
 }

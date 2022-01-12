@@ -1,6 +1,5 @@
 package be.intecbrussel.the_notebook.entities.animal_entities;
 
-// COMPLETED
 public class Carnivore extends Animal {
     private double maxFoodSize = 0;     // default value
 
@@ -22,11 +21,10 @@ public class Carnivore extends Animal {
 
     @Override
     public String toString() {
-        return "Carnivore: " +
-                "name=" + getName() +
-                ", weight=" + getWeight() +
-                ", height=" + getHeight() +
-                ", length=" + getLength() +
-                ", maxFoodSize=" + maxFoodSize + " ";
+        return "Carnivore{name='" + getName() + '\'' +
+                ", weight='" + getWeight() + '\'' +
+                ", height='" + getHeight() + '\'' +
+                ", length='" + getLength() + '\'' +
+                ", maxFoodSize='" + getMaxFoodSize() + "'}";
     }
 }
