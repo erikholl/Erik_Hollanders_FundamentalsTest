@@ -2,8 +2,7 @@ package be.intecbrussel.the_notebook.entities.plant_entities;
 
 public class Flower extends Plant {
     private Scent smell = Scent.UNKNOWN;    // default: see explanation in
-
-    // Scent/LeafType enums
+                                            // Scent/LeafType enums
     public Flower(String name) {
         super(name);
     }

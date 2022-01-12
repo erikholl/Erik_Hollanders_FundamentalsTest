@@ -2,8 +2,7 @@ package be.intecbrussel.the_notebook.entities.plant_entities;
 
 public class Tree extends Plant {
     private LeafType leafType = LeafType.UNKNOWN;   // default: see explanation
-
-    // in Scent/LeafType enums
+                                                    // in Scent/LeafType enums
     public Tree(String name) {
         super(name);
     }

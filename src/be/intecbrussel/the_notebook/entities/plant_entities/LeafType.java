@@ -6,7 +6,7 @@ public enum LeafType {
     HAND,
     HEART,
     SPEAR,
-    UNKNOWN /// * see note
+    UNKNOWN // * see note
 }
 
 /* *
