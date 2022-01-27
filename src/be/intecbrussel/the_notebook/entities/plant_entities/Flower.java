@@ -1,8 +1,15 @@
 package be.intecbrussel.the_notebook.entities.plant_entities;
 
+import java.util.EnumSet;
+import java.util.Optional;
+
 public class Flower extends Plant {
-    private Scent smell = Scent.UNKNOWN;    // default: see explanation in
-                                            // Scent/LeafType enums
+    private Scent smell;
+    private Optional<Scent> optionalSmell;
+    // I don't know where to start with this Optional - should i first
+    // declare a normal Scent, then an Optional Scent and use the Optional
+    // Scent in the getter in case there is no normal Scent given?
+
     public Flower(String name) {
         super(name);
     }
@@ -12,7 +19,11 @@ public class Flower extends Plant {
     }
 
     public Scent getSmell() {
-        return smell;
+        if (smell == null) {
+            return Scent.UNKNOWN;
+        } else {
+            return smell;
+        }
     }
 
     public void setSmell(Scent smell) {
