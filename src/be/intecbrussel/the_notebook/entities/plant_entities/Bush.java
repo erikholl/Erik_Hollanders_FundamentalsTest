@@ -1,8 +1,10 @@
 package be.intecbrussel.the_notebook.entities.plant_entities;
 
+import java.util.Optional;
+
 public class Bush extends Plant {
-    private String fruit = "UNKNOWN";               // default: see explanation
-    private LeafType leafType = LeafType.UNKNOWN;   // in Scent/LeafType enums
+    private String fruit = "UNKNOWN";
+    private LeafType leafType;
 
 
     public Bush(String name) {
@@ -21,8 +23,8 @@ public class Bush extends Plant {
         this.fruit = fruit;
     }
 
-    public LeafType getLeafType() {
-        return leafType;
+    public Optional<LeafType> getLeafType() {
+        return this.leafType == null ? Optional.empty() : Optional.of(this.leafType);
     }
 
     public void setLeafType(LeafType leafType) {
@@ -31,9 +33,11 @@ public class Bush extends Plant {
 
     @Override
     public String toString() {
-        return "Bush{name='" + getName() + '\'' +
-                ", height='" + getHeight() + '\'' +
-                ", fruit='" + getFruit() + '\'' +
-                ", leafType='" + getLeafType() + "'}";
+        return
+                "Bush{" + super.toString() +
+                        ", fruit='" + getFruit() + '\'' +
+                        ", leafType='" + (getLeafType().isPresent() ?
+                        getLeafType().get() : "UNKNOWN") +
+                        "'}";
     }
 }

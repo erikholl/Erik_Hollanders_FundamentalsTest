@@ -6,7 +6,7 @@ public class Plant {
 
     public Plant(String name) {
         this.name = name;
-        setHeight(0);           // default value
+        setHeight(-1);
     }
 
     public Plant(String name, double height) {
@@ -28,7 +28,10 @@ public class Plant {
 
     @Override
     public String toString() {
-        return "Plant{" +
-                "name='" + getName() + "'}";
+        return
+                "name='" + getName() + '\'' +
+                        ", height='" + (getHeight() == -1 ? "'UNKNOWN'" :
+                        getHeight()) +
+                        '\'';
     }
 }

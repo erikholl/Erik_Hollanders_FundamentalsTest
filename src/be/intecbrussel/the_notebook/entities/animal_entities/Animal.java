@@ -8,9 +8,9 @@ public class Animal {
 
     public Animal(String name) {
         this.name = name;
-        setWeight(0);                   // default value
-        setHeight(0);                   //      ,,
-        setLength(0);                   //      ,,
+        setWeight(-1);                   // default value
+        setHeight(-1);                   //      ,,
+        setLength(-1);                   //      ,,
     }
 
     public Animal(String name, double weight, double height, double length) {
@@ -46,5 +46,17 @@ public class Animal {
 
     public void setLength(double length) {
         this.length = length;
+    }
+
+    @Override
+    public String toString() {
+        return
+                "name='" + getName() + '\'' +
+                        ", weight='" + (getWeight() == -1 ? "UNKNOWN" :
+                        getWeight()) + '\'' +
+                        ", height='" + (getHeight() == -1 ? "UNKNOWN" :
+                        getHeight()) + '\'' +
+                        ", length='" + (getLength() == -1 ? "UNKNOWN" :
+                        getLength()) + '\'';
     }
 }

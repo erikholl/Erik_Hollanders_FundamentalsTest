@@ -1,7 +1,7 @@
 package be.intecbrussel.the_notebook.entities.plant_entities;
 
 public class Weed extends Plant {
-    private double area = 0;                        // default
+    private double area = -1;
 
     public Weed(String name) {
         super(name);
@@ -21,8 +21,9 @@ public class Weed extends Plant {
 
     @Override
     public String toString() {
-        return "Weed{name='" + getName() + '\'' +
-                ", height='" + getHeight() + '\'' +
-                ", area='" + getArea() + "'}";
+        return
+                "Weed{" + super.toString() +
+                        ", area='" + (getArea() == -1 ? "UNKNOWN" : getArea()) +
+                        "'}";
     }
 }
